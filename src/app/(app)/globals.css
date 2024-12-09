@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 160 43% 96%;
+    --foreground: 156 43% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 156 43% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 156 43% 12%;
+    --primary: 156 43% 12%;
+    --primary-foreground: 160 43% 96%;
+    --secondary: 12 76% 61%;
+    --secondary-foreground: 160 43% 96%;
+    --muted: 160 43% 96%;
+    --muted-foreground: 156 43% 32%;
+    --accent: 12 76% 61%;
+    --accent-foreground: 160 43% 96%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 160 43% 96%;
+    --border: 156 43% 88%;
+    --input: 156 43% 88%;
+    --ring: 156 43% 12%;
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 156 43% 12%;
+    --foreground: 160 43% 96%;
+    --card: 156 43% 12%;
+    --card-foreground: 160 43% 96%;
+    --popover: 156 43% 12%;
+    --popover-foreground: 160 43% 96%;
+    --primary: 160 43% 96%;
+    --primary-foreground: 156 43% 12%;
+    --secondary: 12 76% 61%;
+    --secondary-foreground: 160 43% 96%;
+    --muted: 156 43% 24%;
+    --muted-foreground: 160 43% 86%;
+    --accent: 12 76% 61%;
+    --accent-foreground: 160 43% 96%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 160 43% 96%;
+    --border: 156 43% 24%;
+    --input: 156 43% 24%;
+    --ring: 160 43% 86%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background;
+    color: #000;
+  }
+}
+
+/* Decorative Elements */
+.leaf-decoration {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.leaf-decoration-1 {
+  top: 0;
+  right: 0;
+  transform: rotate(45deg);
+}
+
+.leaf-decoration-2 {
+  bottom: 0;
+  left: 0;
+  transform: rotate(-135deg);
+}

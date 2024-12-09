@@ -41,7 +41,7 @@ export default buildConfig({
       fields: [],
     },
     {
-      slug: 'pages',
+      slug: 'campaigns',
       admin: {
         useAsTitle: 'title',
       },
@@ -49,22 +49,68 @@ export default buildConfig({
         {
           name: 'title',
           type: 'text',
+          required: true,
         },
         {
-          name: 'content',
-          type: 'richText',
+          name: 'description',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+        {
+          name: 'stats',
+          type: 'group',
+          fields: [
+            {
+              name: 'supporters',
+              type: 'number',
+              required: true,
+            },
+            {
+              name: 'revenue',
+              type: 'number',
+              required: true,
+            },
+            {
+              name: 'goal',
+              type: 'number',
+              required: true,
+            },
+          ],
+        },
+        {
+          name: 'progressColor',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'bgColor',
+          type: 'text',
+          required: true,
         },
       ],
     },
     {
       slug: 'media',
-      upload: true,
-      fields: [
-        {
-          name: 'text',
-          type: 'text',
-        },
-      ],
+      upload: {
+        staticURL: '/media',
+        staticDir: 'media',
+        imageSizes: [
+          {
+            name: 'thumbnail',
+            width: 400,
+            height: 300,
+          },
+        ],
+        adminThumbnail: 'thumbnail',
+        mimeTypes: ['image/*'],
+      },
+      fields: [],
     },
   ],
   secret: process.env.PAYLOAD_SECRET || '',

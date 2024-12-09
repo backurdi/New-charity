@@ -12,7 +12,7 @@ export interface Config {
   };
   collections: {
     users: User;
-    pages: Page;
+    campaigns: Campaign;
     media: Media;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -64,26 +64,20 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "pages".
+ * via the `definition` "campaigns".
  */
-export interface Page {
+export interface Campaign {
   id: string;
-  title?: string | null;
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  title: string;
+  description: string;
+  image: string | Media;
+  stats: {
+    supporters: number;
+    revenue: number;
+    goal: number;
+  };
+  progressColor: string;
+  bgColor: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -93,7 +87,6 @@ export interface Page {
  */
 export interface Media {
   id: string;
-  text?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -105,6 +98,16 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -118,22 +121,18 @@ export interface PayloadLockedDocument {
         value: string | User;
       } | null)
     | ({
-        relationTo: 'pages';
-        value: string | Page;
+        relationTo: 'campaigns';
+        value: string | Campaign;
       } | null)
     | ({
         relationTo: 'media';
         value: string | Media;
       } | null);
   globalSlug?: string | null;
-  _lastEdited: {
-    user: {
-      relationTo: 'users';
-      value: string | User;
-    };
-    editedAt?: string | null;
+  user: {
+    relationTo: 'users';
+    value: string | User;
   };
-  isLocked?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
