@@ -1,15 +1,15 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { CheckCircle2 } from 'lucide-react'
 
-export default function PaymentSuccessPage() {
+function PaymentSuccessContent() {
   const [status, setStatus] = useState<'processing' | 'succeeded' | 'failed'>('processing')
   const searchParams = useSearchParams()
-  const payment_intent = searchParams.get('payment_intent')
+  const payment_intent = searchParams?.get('payment_intent')
   const [paymentDetails, setPaymentDetails] = useState<{
     status: string
     amount: number
@@ -67,5 +67,13 @@ export default function PaymentSuccessPage() {
         </Link>
       </div>
     </div>
+  )
+}
+
+export default function PaymentSuccessPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PaymentSuccessContent />
+    </Suspense>
   )
 }

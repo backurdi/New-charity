@@ -69,6 +69,7 @@
     "payload": "3.0.0-beta.108",
     "react": "19.0.0-rc-5dcb0097-20240918",
     "react-dom": "19.0.0-rc-5dcb0097-20240918",
+    "react-hook-form": "^7.54.0",
     "sharp": "0.32.6",
     "stripe": "^17.4.0",
     "tailwind-merge": "^2.5.5"

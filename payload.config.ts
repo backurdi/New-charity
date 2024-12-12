@@ -98,7 +98,6 @@ export default buildConfig({
     {
       slug: 'media',
       upload: {
-        staticURL: '/media',
         staticDir: 'media',
         imageSizes: [
           {

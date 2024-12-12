@@ -22,16 +22,19 @@ export async function GET(req: Request) {
       status: paymentIntent.status,
       amount: paymentIntent.amount,
       currency: paymentIntent.currency,
-      payment_method: {
-        type: paymentIntent.payment_method?.type,
-        card: paymentIntent.payment_method?.card
-          ? {
-              brand: paymentIntent.payment_method.card.brand,
-              last4: paymentIntent.payment_method.card.last4,
-            }
-          : null,
-        billing_details: paymentIntent.payment_method?.billing_details,
-      },
+      payment_method:
+        typeof paymentIntent.payment_method === 'string'
+          ? null
+          : {
+              type: paymentIntent.payment_method?.type,
+              card: paymentIntent.payment_method?.card
+                ? {
+                    brand: paymentIntent.payment_method.card.brand,
+                    last4: paymentIntent.payment_method.card.last4,
+                  }
+                : null,
+              billing_details: paymentIntent.payment_method?.billing_details,
+            },
     })
   } catch (error) {
     console.error('Error retrieving payment intent:', error)

@@ -4,10 +4,11 @@ import { XCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
+import { Suspense } from 'react'
 
-export default function PaymentErrorPage() {
+function PaymentErrorContent() {
   const searchParams = useSearchParams()
-  const error = searchParams.get('error')
+  const error = searchParams?.get('error')
 
   return (
     <div className="min-h-screen bg-background-two flex items-center justify-center p-4">
@@ -29,5 +30,13 @@ export default function PaymentErrorPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function PaymentErrorPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PaymentErrorContent />
+    </Suspense>
   )
 }

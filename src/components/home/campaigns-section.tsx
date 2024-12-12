@@ -1,30 +1,30 @@
-"use client";
+'use client'
 
-import Image from "next/image";
-import { Heart, Circle, ChevronLeft, ChevronRight } from "lucide-react";
-import useEmblaCarousel from "embla-carousel-react";
-import { useCallback } from "react";
-import { Campaign } from "@/payload-types";
+import Image from 'next/image'
+import { Heart, Circle, ChevronLeft, ChevronRight } from 'lucide-react'
+import useEmblaCarousel from 'embla-carousel-react'
+import { useCallback } from 'react'
+import { Campaign } from 'payload-types'
 
 interface CampaignsSectionProps {
-  campaigns: Campaign[];
+  campaigns: Campaign[]
 }
 
 export function CampaignsSection({ campaigns }: CampaignsSectionProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
-    align: "start",
+    align: 'start',
     loop: true,
     skipSnaps: false,
     dragFree: true,
-  });
+  })
 
   const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
-  }, [emblaApi]);
+    if (emblaApi) emblaApi.scrollPrev()
+  }, [emblaApi])
 
   const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
-  }, [emblaApi]);
+    if (emblaApi) emblaApi.scrollNext()
+  }, [emblaApi])
 
   return (
     <section className="bg-background-two w-full flex justify-center text-black">
@@ -32,12 +32,8 @@ export function CampaignsSection({ campaigns }: CampaignsSectionProps) {
         <div className="w-[95%] mx-auto">
           <div className="flex justify-between items-center mb-12">
             <div>
-              <p className="text-orange font-semibold mb-2">
-                OUR COURSES PROGRAMS
-              </p>
-              <h2 className="text-4xl font-bold">
-                Donate our courses to people in need
-              </h2>
+              <p className="text-orange font-semibold mb-2">OUR COURSES PROGRAMS</p>
+              <h2 className="text-4xl font-bold">Donate our courses to people in need</h2>
             </div>
             <div className="flex gap-4">
               <button
@@ -64,7 +60,11 @@ export function CampaignsSection({ campaigns }: CampaignsSectionProps) {
                 >
                   <div className="relative h-48">
                     <Image
-                      src={campaign.image.length ? campaign.image.url : '/placeholder.jpg'}
+                      src={
+                        typeof campaign.image === 'string' && campaign.image.length
+                          ? campaign.image
+                          : campaign.image || '/placeholder.jpg'
+                      }
                       alt={campaign.title}
                       fill
                       className="object-cover rounded-lg"
@@ -72,12 +72,8 @@ export function CampaignsSection({ campaigns }: CampaignsSectionProps) {
                   </div>
                   <div className="p-6 space-y-4">
                     <h3 className="text-xl font-bold">{campaign.title}</h3>
-                    <p className="text-gray-600 text-sm">
-                      {campaign.description}
-                    </p>
-                    <div
-                      className={`h-2 rounded-full ${campaign.progressColor}`}
-                    />
+                    <p className="text-gray-600 text-sm">{campaign.description}</p>
+                    <div className={`h-2 rounded-full ${campaign.progressColor}`} />
                     <div className="flex justify-between items-center">
                       <div className="flex items-center gap-2">
                         <Heart className="h-4 w-4 text-red-500 fill-red-500" />
@@ -88,8 +84,8 @@ export function CampaignsSection({ campaigns }: CampaignsSectionProps) {
                       <div className="flex items-center gap-2">
                         <Circle className="h-4 w-4" />
                         <span className="font-semibold">
-                          ${campaign.stats.revenue.toLocaleString()} Revenue
-                          from ${campaign.stats.goal.toLocaleString()}
+                          ${campaign.stats.revenue.toLocaleString()} Revenue from $
+                          {campaign.stats.goal.toLocaleString()}
                         </span>
                       </div>
                     </div>
@@ -101,5 +97,5 @@ export function CampaignsSection({ campaigns }: CampaignsSectionProps) {
         </div>
       </div>
     </section>
-  );
+  )
 }

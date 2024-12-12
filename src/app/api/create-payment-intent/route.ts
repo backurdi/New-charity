@@ -56,7 +56,7 @@ export async function POST(req: Request) {
         capture_method: 'automatic',
         setup_future_usage: 'off_session',
         metadata: {
-          isSubscription: true,
+          isSubscription: 'true',
           priceId, // Store the priceId for later use
         },
       })
@@ -70,7 +70,7 @@ export async function POST(req: Request) {
         payment_method_types: ['card'],
         capture_method: 'automatic',
         metadata: {
-          isSubscription: false,
+          isSubscription: 'false',
         },
       })
 

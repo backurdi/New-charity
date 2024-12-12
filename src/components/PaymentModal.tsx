@@ -17,6 +17,8 @@ import { Label } from '@/components/ui/label'
 import { Input } from './ui/input'
 import { createPaymentIntent } from '@/lib/stripe-client'
 import { cn } from '@/lib/utils'
+import type Stripe from 'stripe'
+import { PaymentRequest } from '@stripe/stripe-js'
 
 const PREDEFINED_AMOUNTS = [50, 100, 200, 500]
 
@@ -46,7 +48,7 @@ export default function PaymentModal({ campaign, isOpen, onClose }: PaymentModal
   })
   const [googlePayAvailable, setGooglePayAvailable] = useState(false)
   const [applePayAvailable, setApplePayAvailable] = useState(false)
-  const [paymentRequest, setPaymentRequest] = useState<stripe.PaymentRequest | null>(null)
+  const [paymentRequest, setPaymentRequest] = useState<PaymentRequest | null>(null)
   const [emailError, setEmailError] = useState('')
 
   const stripe = useStripe()
@@ -101,7 +103,7 @@ export default function PaymentModal({ campaign, isOpen, onClose }: PaymentModal
 
       if (error) {
         window.location.href = `${window.location.origin}/payment/error?error=${encodeURIComponent(
-          error.message,
+          error.message || 'Unknown error',
         )}`
       }
     } catch (error) {
@@ -200,7 +202,7 @@ export default function PaymentModal({ campaign, isOpen, onClose }: PaymentModal
     })
 
     return () => {
-      pr.removeAllListeners()
+      pr.off('paymentmethod')
     }
   }, [stripe, isOpen, amount, campaign.title, isSubscription])
 
@@ -273,7 +275,7 @@ export default function PaymentModal({ campaign, isOpen, onClose }: PaymentModal
                     setEmailError('')
                   }}
                   placeholder="Enter your email"
-                  className={cn(emailError && 'border-red-500')}
+                  className={cn(!!emailError && 'border-red-500')}
                 />
                 {emailError && <p className="text-sm text-red-500">{emailError}</p>}
               </div>

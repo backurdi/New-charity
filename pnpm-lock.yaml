@@ -153,6 +153,9 @@ dependencies:
   react-dom:
     specifier: 19.0.0-rc-5dcb0097-20240918
     version: 19.0.0-rc-5dcb0097-20240918(react@19.0.0-rc-5dcb0097-20240918)
+  react-hook-form:
+    specifier: ^7.54.0
+    version: 7.54.0(react@19.0.0-rc-5dcb0097-20240918)
   sharp:
     specifier: 0.32.6
     version: 0.32.6
@@ -7763,6 +7766,15 @@ packages:
       react: '>=16.13.1'
     dependencies:
       '@babel/runtime': 7.26.0
+      react: 19.0.0-rc-5dcb0097-20240918
+    dev: false
+
+  /react-hook-form@7.54.0(react@19.0.0-rc-5dcb0097-20240918):
+    resolution: {integrity: sha512-PS05+UQy/IdSbJNojBypxAo9wllhHgGmyr8/dyGQcPoiMf3e7Dfb9PWYVRco55bLbxH9S+1yDDJeTdlYCSxO3A==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18 || ^19
+    dependencies:
       react: 19.0.0-rc-5dcb0097-20240918
     dev: false
 
