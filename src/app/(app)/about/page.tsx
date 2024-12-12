@@ -1,6 +1,6 @@
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import Image from 'next/image'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 export default function AboutPage() {
   return (
@@ -22,11 +22,10 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
-              <p className="text-muted-foreground mb-6">
-                At HopeHarbor, we believe in the power of collective action to
-                create lasting positive change. Our mission is to connect
-                generous hearts with meaningful causes, making it easier for
-                people to contribute to the betterment of our world.
+              <p className="t mb-6">
+                At HopeHarbor, we believe in the power of collective action to create lasting
+                positive change. Our mission is to connect generous hearts with meaningful causes,
+                making it easier for people to contribute to the betterment of our world.
               </p>
               <Button asChild>
                 <Link href="/campaigns">View Our Campaigns</Link>
@@ -55,7 +54,7 @@ export default function AboutPage() {
                     <value.icon className="h-12 w-12 mx-auto text-primary" />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
-                  <p className="text-muted-foreground">{value.description}</p>
+                  <p className="t">{value.description}</p>
                 </div>
               ))}
             </div>
@@ -78,62 +77,58 @@ export default function AboutPage() {
                   />
                 </div>
                 <h3 className="font-semibold">{member.name}</h3>
-                <p className="text-muted-foreground">{member.role}</p>
+                <p className="t">{member.role}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
     </div>
-  );
+  )
 }
 
-import { Heart, Shield, Users } from "lucide-react";
+import { Heart, Shield, Users } from 'lucide-react'
 
 const values = [
   {
-    title: "Compassion",
+    title: 'Compassion',
     description:
-      "We believe in treating everyone with kindness and understanding, recognizing the dignity in every person we serve.",
+      'We believe in treating everyone with kindness and understanding, recognizing the dignity in every person we serve.',
     icon: Heart,
   },
   {
-    title: "Transparency",
+    title: 'Transparency',
     description:
-      "We maintain complete openness about our operations and use of funds, ensuring trust with our donors and beneficiaries.",
+      'We maintain complete openness about our operations and use of funds, ensuring trust with our donors and beneficiaries.',
     icon: Shield,
   },
   {
-    title: "Community",
+    title: 'Community',
     description:
-      "We foster a sense of belonging and collaboration, working together to create positive change in the world.",
+      'We foster a sense of belonging and collaboration, working together to create positive change in the world.',
     icon: Users,
   },
-];
+]
 
 const team = [
   {
-    name: "Sarah Johnson",
-    role: "Executive Director",
-    image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3",
+    name: 'Sarah Johnson',
+    role: 'Executive Director',
+    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3',
   },
   {
-    name: "Michael Chen",
-    role: "Operations Director",
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3",
+    name: 'Michael Chen',
+    role: 'Operations Director',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3',
   },
   {
-    name: "Emily Rodriguez",
-    role: "Program Manager",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3",
+    name: 'Emily Rodriguez',
+    role: 'Program Manager',
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3',
   },
   {
-    name: "David Kim",
-    role: "Community Outreach",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3",
+    name: 'David Kim',
+    role: 'Community Outreach',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3',
   },
-];
+]

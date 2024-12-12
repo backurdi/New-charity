@@ -1,91 +1,42 @@
-import { Heart, Circle } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { getPayloadHMR } from '@payloadcms/next/utilities'
+import config from '@payload-config'
+import { Heart, Circle } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
 
 interface Campaign {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
+  id: string
+  title: string
+  description: string
+  image: string
   stats: {
-    supporters: number;
-    revenue: number;
-    goal: number;
-  };
-  progressColor: string;
-  bgColor: string;
+    supporters: number
+    revenue: number
+    goal: number
+  }
+  progressColor: string
+  bgColor: string
 }
 
-const campaigns: Campaign[] = [
-  {
-    id: "africa-food-aid",
-    title: "Help Africa to get basic food aid and education",
-    description:
-      "Since 2008 we have always been looking for nature and relying on rivers to get drinking water...",
-    image: "/placeholder.jpg",
-    stats: {
-      supporters: 37935,
-      revenue: 52028,
-      goal: 75000,
-    },
-    progressColor: "bg-orange",
-    bgColor: "bg-[#ffebbd]",
-  },
-  {
-    id: "african-education",
-    title: "Help brothers in African countries to help other education",
-    description:
-      "Since 2008 we have always been looking for nature and relying on rivers to get drinking water...",
-    image: "/placeholder.jpg",
-    stats: {
-      supporters: 40000,
-      revenue: 15731,
-      goal: 50000,
-    },
-    progressColor: "bg-green-600",
-    bgColor: "bg-[#ffbded]",
-  },
-  {
-    id: "clothes-donation",
-    title: "Donate your used clothes to those in need",
-    description:
-      "Since 2008 we have always been looking for nature and relying on rivers to get drinking water...",
-    image: "/placeholder.jpg",
-    stats: {
-      supporters: 25034,
-      revenue: 20531,
-      goal: 50000,
-    },
-    progressColor: "bg-purple-600",
-    bgColor: "bg-[#cabdff]",
-  },
-  {
-    id: "education-support",
-    title: "Help brothers in African countries to help other education",
-    description:
-      "Since 2008 we have always been looking for nature and relying on rivers to get drinking water...",
-    image: "/placeholder.jpg",
-    stats: {
-      supporters: 40000,
-      revenue: 15731,
-      goal: 50000,
-    },
-    progressColor: "bg-green-600",
-    bgColor: "bg-[#ffd1bd]",
-  },
-];
+const payload = await getPayloadHMR({
+  config,
+})
 
-// Export campaigns for use in other components
-export { campaigns };
+const data = await payload.find({
+  collection: 'campaigns',
+})
+
+const campaigns = data.docs
 
 // Generate static params for all campaign pages
 export function generateStaticParams() {
   return campaigns.map((campaign) => ({
     id: campaign.id,
-  }));
+  }))
 }
 
 export default function CampaignsPage() {
+  console.log(campaigns)
   return (
     <div className="bg-background-two min-h-screen py-16">
       <div className="container mx-auto px-4">
@@ -93,8 +44,8 @@ export default function CampaignsPage() {
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold mb-4">Our Campaigns</h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Join us in making a difference. Browse through our active campaigns
-            and help us create positive change in communities around the world.
+            Join us in making a difference. Browse through our active campaigns and help us create
+            positive change in communities around the world.
           </p>
         </div>
 
@@ -108,7 +59,11 @@ export default function CampaignsPage() {
             >
               <div className="relative h-48">
                 <Image
-                  src={campaign.image}
+                  src={
+                    typeof campaign.image === 'string' && campaign.image.length
+                      ? campaign.image
+                      : '/placeholder.jpg'
+                  }
                   alt={campaign.title}
                   fill
                   className="object-cover"
@@ -149,5 +104,5 @@ export default function CampaignsPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }

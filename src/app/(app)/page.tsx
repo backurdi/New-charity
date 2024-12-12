@@ -1,15 +1,13 @@
-import { HeroSection } from "@/components/home/hero-section";
-import { DonationCTA } from "@/components/home/donation-cta";
-import { StatsSection } from "@/components/home/stats-section";
-import { ProgramsSection } from "@/components/home/programs-section";
-import { WelcomeSection } from "@/components/home/welcome-section";
-import { CampaignsSection } from "@/components/home/campaigns-section";
-import { MissionSection } from "@/components/home/mission-section";
-import { FAQSection } from "@/components/home/faq-section";
-import { Campaign } from "@/payload-types";
+import { HeroSection } from '@/components/home/hero-section'
+import { DonationCTA } from '@/components/home/donation-cta'
+import { StatsSection } from '@/components/home/stats-section'
+import { ProgramsSection } from '@/components/home/programs-section'
+import { WelcomeSection } from '@/components/home/welcome-section'
+import { CampaignsSection } from '@/components/home/campaigns-section'
+import { MissionSection } from '@/components/home/mission-section'
+import { FAQSection } from '@/components/home/faq-section'
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 import config from '@payload-config'
-
 
 export default async function Home() {
   const payload = await getPayloadHMR({
@@ -35,5 +33,5 @@ export default async function Home() {
         <FAQSection />
       </div>
     </div>
-  );
+  )
 }
