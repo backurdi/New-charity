@@ -5,6 +5,7 @@ import { Heart, Circle, ChevronLeft, ChevronRight } from 'lucide-react'
 import useEmblaCarousel from 'embla-carousel-react'
 import { useCallback } from 'react'
 import { Campaign } from 'payload-types'
+import Link from 'next/link'
 
 interface CampaignsSectionProps {
   campaigns: Campaign[]
@@ -54,7 +55,8 @@ export function CampaignsSection({ campaigns }: CampaignsSectionProps) {
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex gap-8">
               {campaigns.map((campaign, index) => (
-                <div
+                <Link
+                  href={`/campaigns/${campaign.id}`}
                   key={index}
                   className={`flex-[0_0_29%] min-w-0 rounded-3xl overflow-hidden p-4 ${campaign.bgColor}`}
                 >
@@ -63,7 +65,7 @@ export function CampaignsSection({ campaigns }: CampaignsSectionProps) {
                       src={
                         typeof campaign.image === 'string' && campaign.image.length
                           ? campaign.image
-                          : campaign.image || '/placeholder.jpg'
+                          : '/placeholder.jpg'
                       }
                       alt={campaign.title}
                       fill
@@ -90,7 +92,7 @@ export function CampaignsSection({ campaigns }: CampaignsSectionProps) {
                       </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

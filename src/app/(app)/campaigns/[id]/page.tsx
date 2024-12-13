@@ -92,10 +92,10 @@ export default async function Page({ params }: { params: { id: string } }) {
               <div className="rounded-lg border bg-white p-6">
                 <h3 className="font-semibold mb-4">Share This Campaign</h3>
                 <div className="flex space-x-4">
-                  <Button variant="outline" className="flex-1 text-white">
+                  <Button variant="outline" className="flex-1 text-white bg-primary">
                     Twitter
                   </Button>
-                  <Button variant="outline" className="flex-1 text-white">
+                  <Button variant="outline" className="flex-1 text-white bg-primary">
                     Facebook
                   </Button>
                 </div>

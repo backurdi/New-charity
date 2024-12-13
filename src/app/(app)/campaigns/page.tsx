@@ -36,7 +36,6 @@ export function generateStaticParams() {
 }
 
 export default function CampaignsPage() {
-  console.log(campaigns)
   return (
     <div className="bg-background-two min-h-screen py-16">
       <div className="container mx-auto px-4">
